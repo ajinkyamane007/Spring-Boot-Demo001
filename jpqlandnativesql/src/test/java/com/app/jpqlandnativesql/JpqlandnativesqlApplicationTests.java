@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.jpqlandnativesql.entities.Student;
 import com.app.jpqlandnativesql.entities.repos.StudentRepository;
@@ -44,10 +46,27 @@ class JpqlandnativesqlApplicationTests {
 	public void testFindAllStudentsPartialData() {
 		List<Object[]> partialData = repository.findAllStudentsPartialData();
 		//use foreach iterator to fetch data here
-		for (Object[] objects : partialData) {
+		for (Object[] objects : partialData)
+		{
 			System.out.println(objects[0]);
 			System.out.println(objects[1]);
 		}
-
+	}
+	
+	@Test
+	public void testfindAllStudentsByfirstName() {
+		System.out.println(repository.findAllStudentsByfirstName("Ajinkya"));
+	}
+	
+	@Test
+	public void testfindAllStudentForGivenScore() {
+		System.out.println(repository.findAllStudentForGivenScore(80, 98));
+	}
+	
+	@Test
+	@Transactional //from spring DML operation
+	@Rollback(false)
+	public void testdeleteStudentByfirstName() {
+		repository.deleteStudentByfirstName("Suyesh");
 	}
 }
