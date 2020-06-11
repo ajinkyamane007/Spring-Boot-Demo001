@@ -59,8 +59,8 @@ class JpqlandnativesqlApplicationTests {
 	@Test
 	public void testFindAllStudents() {
 		System.out.println(repository.findAllStudents(PageRequest.of(1, 4)));
-		//System.out.println(repository.findAllStudents(PageRequest.of(1, 4, Sort.by(Direction.DESC, "score"))));
-		//System.out.println(repository.findAllStudents(PageRequest.of(0, 4, Direction.DESC, "lastName")));
+		//System.out.println(repository.findAllStudents(PageRequest.of(1, 4, Sort.by(Direction.DESC, "id"))));
+		//System.out.println(repository.findAllStudents(PageRequest.of(0, 4, Direction.DESC, "id")));
 
 	}	
 
@@ -91,4 +91,33 @@ class JpqlandnativesqlApplicationTests {
 	public void testdeleteStudentByfirstName() {
 		repository.deleteStudentByfirstName("Suyesh");
 	}
+	
+	// Native SQL Query
+	@Test
+	public void testFindAllStudentsNQ() {
+		System.out.println(repository.findAllStudentsNQ());
+	}
+	
+	@Test
+	public void testByfirstNameNQ() {
+		System.out.println(repository.findByfirstNameNQ("Ajinkya"));
+	}
+	
+	
+	@Test
+	public void testfindAllPartialDataNQ() {
+		List<Object[]> partialData = repository.findPartialDataNQ();
+		//use foreach iterator to fetch data here
+		for (Object[] objects : partialData)
+		{
+			System.out.println(objects[0]);
+			System.out.println(objects[1]);
+		}
+	}
+	
+	
+//	@Test
+//	public void testfindAllStudentForGivenScoreNQ() {
+//		System.out.println(repository.findAllStudentForGivenScoreNQ());
+//	}
 }
