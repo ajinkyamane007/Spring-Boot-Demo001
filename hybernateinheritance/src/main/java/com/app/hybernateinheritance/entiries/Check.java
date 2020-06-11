@@ -2,11 +2,13 @@ package com.app.hybernateinheritance.entiries;
 
 //import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+//import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="bankcheck")
 //@DiscriminatorValue("ch")
+//@PrimaryKeyJoinColumn(name="id")  //Not necessary in latest version
 public class Check extends Payment
 {
 
