@@ -2,6 +2,7 @@ package com.app.jpqlandnativesql.entities.repos;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,8 +12,11 @@ import com.app.jpqlandnativesql.entities.Student;
 
 public interface StudentRepository extends CrudRepository<Student, Long> {
 
+//	@Query("from Student")
+//	List<Student>findAllStudents();
+	
 	@Query("from Student")
-	List<Student>findAllStudents();
+	List<Student>findAllStudents(Pageable pageable);
 	
 	@Query("select s.firstName,s.lastName from Student s")
 	List<Object[]>findAllStudentsPartialData();
