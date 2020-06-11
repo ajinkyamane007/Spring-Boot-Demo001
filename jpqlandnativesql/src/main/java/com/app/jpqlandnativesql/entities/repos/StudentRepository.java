@@ -46,7 +46,7 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
 	//here instead of<Student> we get Object[] array of Student Obj
 	List<Object[]>findPartialDataNQ();
 	
-//	@Query(value="select fname,score from student where score BETWEEN :min AND =:max",nativeQuery = true)
+//	@Query(value="select fname,score from student where score BETWEEN =:min AND =:max",nativeQuery = true)
 //	List<Student> findAllStudentForGivenScoreNQ(@Param("min") int min,@Param("max") int max);
 	
 //	@Modifying
