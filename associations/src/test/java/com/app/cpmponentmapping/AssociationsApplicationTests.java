@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.cpmponentmapping.manytomany.entities.Programmer;
+import com.app.cpmponentmapping.manytomany.entities.Project;
+import com.app.cpmponentmapping.manytomany.repos.ProgrammerRepository;
 import com.app.cpmponentmapping.onetomany.entities.Customer;
 import com.app.cpmponentmapping.onetomany.entities.PhoneNumber;
 import com.app.cpmponentmapping.onetomany.repos.CustomerRepository;
@@ -18,6 +21,9 @@ class AssociationsApplicationTests
 {
 	@Autowired
 	CustomerRepository repository;
+	
+	@Autowired
+	ProgrammerRepository programmerRepository;
 	
 	@Test
 	public void contextLoads() {
@@ -82,6 +88,36 @@ class AssociationsApplicationTests
 	@Transactional
 	public void testDeleteCustomer() {
 		repository.deleteById(6l);
+	}
+	
+	@Test
+	public void testmtomCreatedProgrammer()
+	{
+		Programmer programmer=new Programmer();
+		programmer.setName("Arjun");
+		programmer.setSal(55000);
+		
+		HashSet<Project>projects=new HashSet<Project>();
+		Project project=new Project();
+		project.setName("Hibernate Project");
+		projects.add(project);
+		
+		programmer.setProjects(projects);
+		programmerRepository.save(programmer);
+	}
+	
+	@Test
+	@Transactional   // To remove lazyinitialization exception its mandatory
+	public void testmtomFindProgrammer()
+	{
+		Optional<Programmer> programmer=programmerRepository.findById(1);
+		if (programmer.isPresent())
+		{
+			Programmer Pro=programmer.get();
+			System.out.println(Pro);
+			System.out.println(Pro.getProjects());
+
+		}
 	}
 
 }
