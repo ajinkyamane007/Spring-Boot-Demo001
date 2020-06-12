@@ -23,22 +23,26 @@ class AssociationsApplicationTests
 	@Test
 	public void testCreateCustomer() {
 		Customer cus=new Customer();
-		cus.setName("Ajinkya");
-		HashSet<PhoneNumber>numbers=new HashSet<PhoneNumber>();
+		cus.setName("Sumit");
+	//	HashSet<PhoneNumber>numbers=new HashSet<PhoneNumber>();
 		
 		PhoneNumber ph1=new PhoneNumber();
 		ph1.setNumber("9922674445");
 		ph1.setType("cell");
-		ph1.setCustomer(cus);
-		numbers.add(ph1);
+	//	ph1.setCustomer(cus);
+	//	numbers.add(ph1);
 		
 		PhoneNumber ph2=new PhoneNumber();
 		ph2.setNumber("7743674445");
 		ph2.setType("cell");
-		ph2.setCustomer(cus);
-		numbers.add(ph2);
+	//	ph2.setCustomer(cus);
+	//	numbers.add(ph2);
 		
-		cus.setNumbers(numbers);
+	//	cus.setNumbers(numbers);
+		
+		cus.addPhoneNumber(ph1);
+		cus.addPhoneNumber(ph1);
+		
 		repository.save(cus);
 		
 	} 

@@ -1,5 +1,6 @@
 package com.app.cpmponentmapping.onetomany.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -46,5 +47,16 @@ public class Customer
 		this.numbers = numbers;
 	}
 	
-
+    public void addPhoneNumber(PhoneNumber number)
+    {
+    	if(number != null) 
+    	{
+    		if(numbers == null) 
+    		{
+    			numbers=new HashSet<>();
+    		}
+    		number.setCustomer(this);
+    		numbers.add(number);
+    	}
+    }
 }
