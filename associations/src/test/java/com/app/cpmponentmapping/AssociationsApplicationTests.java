@@ -26,7 +26,7 @@ class AssociationsApplicationTests
 	@Test
 	public void testCreateCustomer() {
 		Customer cus=new Customer();
-		cus.setName("Abhijeet");
+		cus.setName("Adity");
 	//	HashSet<PhoneNumber>numbers=new HashSet<PhoneNumber>();
 		
 		PhoneNumber ph1=new PhoneNumber();
@@ -53,7 +53,7 @@ class AssociationsApplicationTests
 	@Test
 	@Transactional
 	public void testLoadCustomer() {
-		Optional<Customer> cus =repository.findById(5L);
+		Optional<Customer> cus =repository.findById(6L);
 		if (cus.isPresent())
 		{
 			Customer customer=cus.get();
@@ -67,7 +67,7 @@ class AssociationsApplicationTests
 	@Test
 	@Transactional
 	public void testUpdateCustomer() {
-		Optional<Customer> cus =repository.findById(5L);
+		Optional<Customer> cus =repository.findById(6L);
 		if (cus.isPresent())
 		{
 			Customer customer=cus.get();
@@ -76,6 +76,12 @@ class AssociationsApplicationTests
 			Set<PhoneNumber>numbers=customer.getNumbers();
 			numbers.forEach(number->number.setType("cell"));
 		}	
+	}
+	
+	@Test
+	@Transactional
+	public void testDeleteCustomer() {
+		repository.deleteById(6l);
 	}
 
 }

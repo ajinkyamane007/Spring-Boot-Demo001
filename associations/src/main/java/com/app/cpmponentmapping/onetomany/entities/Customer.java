@@ -21,7 +21,11 @@ public class Customer
 	private String name;
 	
 	//It tells that primary key is customer  & owns/drive the mapping
-	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	//Lazy Loading : Data fetched on demand (i.e when required)
+	//EAGER Loading : when parent obj loaded child obj loaded immediately
+	//Bydefault fetchType is Lazy
+	
+	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL) //fetch = FetchType.EAGER
 	private Set<PhoneNumber>numbers;
 
 	public long getId() {
