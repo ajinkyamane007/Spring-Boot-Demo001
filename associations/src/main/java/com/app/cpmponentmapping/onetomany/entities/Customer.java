@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Customer
 	private String name;
 	
 	//It tells that primary key is customer  & owns/drive the mapping
-	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<PhoneNumber>numbers;
 
 	public long getId() {
