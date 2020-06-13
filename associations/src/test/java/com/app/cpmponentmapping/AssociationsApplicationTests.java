@@ -1,5 +1,6 @@
 package com.app.cpmponentmapping;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -15,6 +16,9 @@ import com.app.cpmponentmapping.manytomany.repos.ProgrammerRepository;
 import com.app.cpmponentmapping.onetomany.entities.Customer;
 import com.app.cpmponentmapping.onetomany.entities.PhoneNumber;
 import com.app.cpmponentmapping.onetomany.repos.CustomerRepository;
+import com.app.cpmponentmapping.onetoone.entities.License;
+import com.app.cpmponentmapping.onetoone.entities.Person;
+import com.app.cpmponentmapping.onetoone.repos.LicenseRepository;
 
 @SpringBootTest
 class AssociationsApplicationTests 
@@ -24,6 +28,9 @@ class AssociationsApplicationTests
 	
 	@Autowired
 	ProgrammerRepository programmerRepository;
+	
+	@Autowired
+	LicenseRepository licenserepository;
 	
 	@Test
 	public void contextLoads() {
@@ -118,6 +125,24 @@ class AssociationsApplicationTests
 			System.out.println(Pro.getProjects());
 
 		}
+	}
+	
+	@Test
+	public void testonetooneCreatedLicence()
+	{
+		License license=new License();
+		license.setType("car");
+		license.setValidFrom(new Date());
+		license.setValidTo(new Date());
+		
+		Person person=new Person();
+		person.setFirstName("Ajinkya");
+		person.setLastName("Mane");
+		person.setAge(24);
+		
+		license.setPerson(person);
+		
+		licenserepository.save(license);
 	}
 
 }
